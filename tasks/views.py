@@ -1,13 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.db import IntegrityError
+
 from django.http import HttpResponse
 
 # Create your views here.
 
 
+# Funcion para ver la vista home
 def home(request):
     return render(request, 'home.html')
+
+# funcion para ver la vista signup.html
 
 
 def signup(request):
@@ -21,8 +27,9 @@ def signup(request):
                 user = User.objects.create_user(
                     username=request.POST['username'], password=request.POST['password1'])
                 user.save()
-                return HttpResponse('Usuario creado con éxito')
-            except:
+                login(request, user)
+                return redirect('tasks')
+            except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
                     'error': 'El usuario ingresado ya existe'
@@ -31,3 +38,7 @@ def signup(request):
             'form': UserCreationForm,
             'error': 'La contraseña ingresada no coinciden'
         })
+
+
+def tasks(request):
+    return render(request, 'tasks.html')
