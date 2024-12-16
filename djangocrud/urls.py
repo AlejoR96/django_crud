@@ -1,5 +1,5 @@
 """
-URL configuration for dejangocrud project.
+URL configuration for djangocrud project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -20,7 +20,7 @@ from tasks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.helloworld),
-    path('signup/', views.helloworld),
+    path('', views.home, name='home'),
+    path('signup/', views.signup, name='signup'),
 
 ]

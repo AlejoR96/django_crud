@@ -9,3 +9,6 @@ db.sqlite3
 # Ignorar pycache 
 __pycache__/
 
+# Ingnorar vscode
+
+.vscode
