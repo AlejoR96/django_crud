@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .forms import Task_form
 
 from django.http import HttpResponse
 
@@ -44,6 +45,18 @@ def tasks(request):
     return render(request, 'tasks.html')
 
 
+def create_Tasks(request):
+
+    if request.method == 'GET':
+        return render(request, 'create_task.html', {
+            'form': Task_form
+        })
+    else:
+        print(request.POST)
+        return render(request, 'create_task.html', {
+            'form': Task_form})
+
+
 def signout(request):
     logout(request)
     return redirect('home')
@@ -64,4 +77,4 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('tasks')
+    return redirect('tasks')
