@@ -52,9 +52,17 @@ def create_Tasks(request):
             'form': Task_form
         })
     else:
-        print(request.POST)
-        return render(request, 'create_task.html', {
-            'form': Task_form})
+        try:
+            form = Task_form(request.POST)
+            new_task = form.save(commit=False)
+            new_task.user = request.user
+            new_task.save()
+            return redirect('tasks')
+        except ValueError:
+            return render(request, 'create_task.html', {
+                'form': Task_form,
+                'error': 'Por favor validar los datos ingresado'
+            })
 
 
 def signout(request):
