@@ -45,6 +45,7 @@ def signup(request):
         })
 
 
+@login_required
 def tasks(request):
 
     # pylint: disable=no-member
@@ -65,6 +66,7 @@ def tasks_completed(request):
     })
 
 
+@login_required
 def create_Tasks(request):
 
     if request.method == 'GET':
@@ -85,6 +87,7 @@ def create_Tasks(request):
             })
 
 
+@login_required
 def task_detail(request, task_id):
     if request.method == 'GET':
         task = get_object_or_404(Task, pk=task_id, user=request.user)
@@ -102,6 +105,7 @@ def task_detail(request, task_id):
                 'task': task, 'form': form, 'error': 'Se presenta un error al actualizar la tarea'})
 
 
+@login_required
 def complete_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id, user=request.user)
     if request.method == "POST":
@@ -110,6 +114,7 @@ def complete_task(request, task_id):
         return redirect('tasks')
 
 
+@login_required
 def delete_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id, user=request.user)
     if request.method == "POST":
@@ -117,6 +122,7 @@ def delete_task(request, task_id):
         return redirect('tasks')
 
 
+@login_required
 def signout(request):
     logout(request)
     return redirect('home')
