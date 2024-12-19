@@ -5,6 +5,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import Task_form
 from .models import Task
+from django.utils import timezone
+from django.contrib import messages
 
 from django.http import HttpResponse
 
@@ -76,7 +78,7 @@ def task_detail(request, task_id):
         task = get_object_or_404(Task, pk=task_id, user=request.user)
         form = Task_form(instance=task)
         return render(request, 'tasks_detail.html', {
-            'tasks': task, 'form': form})
+            'task': task, 'form': form})
     else:
         try:
             task = get_object_or_404(Task, pk=task_id, user=request.user)
@@ -85,7 +87,22 @@ def task_detail(request, task_id):
             return redirect('tasks')
         except ValueError:
             return render(request, 'tasks_detail.html', {
-                'tasks': task, 'form': form, 'error': 'Se presenta un error al actualizar la tarea'})
+                'task': task, 'form': form, 'error': 'Se presenta un error al actualizar la tarea'})
+
+
+def complete_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    if request.method == "POST":
+        task.datecompleted = timezone.now()
+        task.save()
+        return redirect('tasks')
+
+
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    if request.method == "POST":
+        task.delete()
+        return redirect('tasks')
 
 
 def signout(request):
