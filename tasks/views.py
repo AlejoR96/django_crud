@@ -7,6 +7,7 @@ from .forms import Task_form
 from .models import Task
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 
@@ -45,11 +46,22 @@ def signup(request):
 
 
 def tasks(request):
+
     # pylint: disable=no-member
     Tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
     # print(Tasks)
     return render(request, 'tasks.html', {
         'tasks': Tasks
+    })
+
+
+@login_required
+def tasks_completed(request):
+    # pylint: disable=no-member
+    tasks = Task.objects.filter(
+        user=request.user, datecompleted__isnull=False).order_by('-datecompleted')
+    return render(request, 'tasks.html', {
+        'tasks': tasks
     })
 
 

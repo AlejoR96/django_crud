@@ -15,6 +15,7 @@
     
         <p>{{task.description}}</p>
         <p>{{task.user.username}}</p>
+        <p>{{task.datecompleted|date:"M j Y H:i"}}</p>
       </a>
    
      {% endfor %}
