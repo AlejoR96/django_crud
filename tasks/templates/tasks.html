@@ -2,5 +2,25 @@
 
 {% block content %}
 
-<h1>Vista Tareas o Tasks</h1>
+<h1>Vista Tareas o tasks</h1>
+
+<ul>
+    {% for task in tasks %}
+    
+    {% if task.important %}
+    <strong>{{task.title}}</strong>
+    {% else %}
+    {{task.title}}
+
+    {% endif %}
+
+    <p>{{task.description}}</p>
+    <p>{{task.user.username}}</p>
+     {% endfor %}
+</ul>
+
+{% if not tasks %}
+    <p>No hay tareas disponibles.</p>
+{% endif %}
+
 {% endblock %}

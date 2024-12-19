@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import Task_form
+from .models import Task
 
 from django.http import HttpResponse
 
@@ -42,7 +43,12 @@ def signup(request):
 
 
 def tasks(request):
-    return render(request, 'tasks.html')
+    # pylint: disable=no-member
+    Tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
+    # print(Tasks)
+    return render(request, 'tasks.html', {
+        'tasks': Tasks
+    })
 
 
 def create_Tasks(request):
