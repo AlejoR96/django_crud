@@ -5,16 +5,18 @@
 <h1>Vista Tareas o tasks</h1>
 
 <ul>
-    {% for task in tasks %}
+     {% for task in tasks %}
+      <a href="{% url 'task_detail' task.id %}">
+        {% if task.important %}
+        <strong>{{task.title}}</strong>
+        {% else %}
+        {{task.title}}
+        {% endif %}
     
-    {% if task.important %}
-    <strong>{{task.title}}</strong>
-    {% else %}
-    {{task.title}}
-    {% endif %}
-
-    <p>{{task.description}}</p>
-    <p>{{task.user.username}}</p>
+        <p>{{task.description}}</p>
+        <p>{{task.user.username}}</p>
+      </a>
+   
      {% endfor %}
 </ul>
 
