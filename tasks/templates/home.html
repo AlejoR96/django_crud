@@ -1,7 +1,26 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<main class="container py-5">
+  <section class="card card-body">
+    <h1 class="display-1 text-center">Django App Task</h1>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium
+      obcaecati blanditiis pariatur dignissimos distinctio facilis dolor a vel
+      illo provident error velit dicta accusantium totam, corrupti maxime
+      consequatur sunt ea exercitationem! Vel a tenetur nulla fuga nesciunt
+      animi, praesentium fugiat ea saepe repellat maiores, illum suscipit
+      cupiditate impedit esse laboriosam quam vitae id. Magnam ratione
+      reiciendis unde ab qui possimus dolorum adipisci consectetur mollitia
+      maxime nemo quasi architecto sint quam cupiditate perspiciatis quibusdam
+      atque incidunt non ex quia deserunt, optio veritatis officia! Provident
+      quisquam illum reprehenderit veniam quia excepturi numquam quam alias
+      voluptate quidem. Vitae totam odio mollitia nesciunt iusto?
+    </p>
 
-{% block content %}
-<H1>Home</H1>
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium obcaecati blanditiis pariatur dignissimos distinctio facilis dolor a vel illo provident error velit dicta accusantium totam, corrupti maxime consequatur sunt ea exercitationem! Vel a tenetur nulla fuga nesciunt animi, praesentium fugiat ea saepe repellat maiores, illum suscipit cupiditate impedit esse laboriosam quam vitae id. Magnam ratione reiciendis unde ab qui possimus dolorum adipisci consectetur mollitia maxime nemo quasi architecto sint quam cupiditate perspiciatis quibusdam atque incidunt non ex quia deserunt, optio veritatis officia! Provident quisquam illum reprehenderit veniam quia excepturi numquam quam alias voluptate quidem. Vitae totam odio mollitia nesciunt iusto?
+    <div class="text-center">
+      <a class="btn btn-primary" href="{% url 'signin' %}"> signin </a>
+      <a class="btn btn-dark" href="{% url 'signup' %}"> signup </a>
+    </div>
+  </section>
+</main>
 
 {% endblock %}
