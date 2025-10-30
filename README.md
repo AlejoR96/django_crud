@@ -1,5 +1,5 @@
 # CRUD DE GESTIÓN DE TAREAS 
-## Aplicacion desarrollada con python con framework de djgango y ultizando una base de datos Mysql 
+## Aplicacion desarrollada con python con framework de django y ultizando una base de datos Mysql 
 
 <img width="1412" height="561" alt="image" src="https://github.com/user-attachments/assets/718bd3cb-c1d9-487e-9f98-e86b6dd8423f" />
 <img width="1339" height="455" alt="image" src="https://github.com/user-attachments/assets/770f17dd-1a8a-4c83-a72a-f58729093e78" />
